@@ -1,165 +1,151 @@
 import Navbar from "@/components/feature/Navbar";
 import Footer from "@/components/feature/Footer";
+import { useTranslation } from "react-i18next";
 
 export default function LivePage() {
+  const { t } = useTranslation();
+
+  const fieldBullets = ["b1", "b2", "b3", "b4", "b5", "b6", "b7"] as const;
+
+  const videoCards = [
+    { icon: "ri-movie-2-line", titleKey: "livePage.video.v1t", descKey: "livePage.video.v1d" },
+    { icon: "ri-clapperboard-line", titleKey: "livePage.video.v2t", descKey: "livePage.video.v2d" },
+    { icon: "ri-disc-line", titleKey: "livePage.video.v3t", descKey: "livePage.video.v3d" },
+    { icon: "ri-archive-line", titleKey: "livePage.video.v4t", descKey: "livePage.video.v4d" },
+  ] as const;
+
+  const onestop = ["o1", "o2", "o3", "o4"] as const;
+
+  const fitCards = [
+    { icon: "ri-award-line", titleKey: "livePage.fit.f1t", descKey: "livePage.fit.f1d" },
+    { icon: "ri-megaphone-line", titleKey: "livePage.fit.f2t", descKey: "livePage.fit.f2d" },
+    { icon: "ri-building-line", titleKey: "livePage.fit.f3t", descKey: "livePage.fit.f3d" },
+  ] as const;
+
   return (
     <div className="w-full">
       <Navbar />
       <main className="pt-16 md:pt-[4.75rem]">
-        {/* Hero */}
         <section className="relative w-full overflow-hidden bg-gradient-to-br from-accent/20 via-off-white to-white border-b-4 border-accent">
-          <div className="text-center px-4 py-8 md:py-10 max-w-3xl mx-auto">
+          <div className="text-center px-4 sm:px-8 py-8 md:py-10 max-w-6xl xl:max-w-7xl mx-auto w-full">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-display font-black text-dark mb-3">
-              LIVE配信を<span className="text-accent">ご希望の方へ</span>
+              {t("livePage.hero.titleBefore")}
+              <span className="text-accent">{t("livePage.hero.titleAccent")}</span>
             </h1>
-            <p className="text-base md:text-lg text-gray-secondary leading-relaxed">
-              サイクルネットはグループ会社のトライアンフと共にライブ配信・映像制作全般を受注しています。
+            <p className="text-base md:text-lg text-gray-secondary leading-relaxed xl:whitespace-nowrap">
+              {t("livePage.hero.desc")}
             </p>
           </div>
         </section>
 
-        {/* Main Fields */}
         <section className="w-full bg-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              主な対応分野
+              {t("livePage.fields.title")}
             </h2>
             <p className="text-base md:text-lg text-gray-secondary leading-relaxed mb-6">
-              サイクルネットは、スポーツ競技・イベント・トークショーなどあらゆる場面でのライブ配信および映像制作を一括して受注・運営するプロフェッショナルチームです！ 特に、自転車競技における現場力と経験を活かし、"競技の魅力を引き出す"ライブ映像配信を行っています！ GachinkoCycleTVを使った配信も可能です！
+              {t("livePage.fields.intro")}
             </p>
             <div className="space-y-2">
-              {[
-                "JBCFロードシリーズの他、ヒルクライム、クリテリウムなど自転車競技の中継",
-                "トラック競技のマルチアングル配信",
-                "チーム紹介・選手ドキュメンタリー映像の制作",
-                "スポンサー用プロモ映像・サイネージ対応動画",
-                "自治体・協会との共催イベントの配信・記録映像",
-                "モータースポーツのレース配信・編集（InterProto/Kyojo Cup/ラリー北海道）",
-                "モータースポーツのオンボード映像（伝送システムの提供）",
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 py-2.5 border-b border-gray-100">
+              {fieldBullets.map((key) => (
+                <div key={key} className="flex items-start gap-3 py-2.5 border-b border-gray-100">
                   <i className="ri-check-line text-accent mt-1 shrink-0" />
-                  <p className="text-base text-gray-secondary">{item}</p>
+                  <p className="text-base text-gray-secondary">{t(`livePage.fields.${key}`)}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Live Streaming */}
         <section className="w-full bg-off-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              ライブ配信
+              {t("livePage.live.title")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="rounded-xl p-5 border border-amber-200 bg-amber-50/80 border-l-4 border-l-amber-500 shadow-sm">
                 <div className="w-10 h-10 flex items-center justify-center mb-3 rounded-lg bg-amber-100">
                   <i className="ri-camera-3-line text-2xl text-amber-700" />
                 </div>
-                <h3 className="text-base font-bold text-dark mb-2">マルチカメラ構成</h3>
-                <p className="text-sm text-gray-secondary leading-relaxed">
-                  3〜8カメ構成のスイッチング＋実況解説対応
-                </p>
+                <h3 className="text-base font-bold text-dark mb-2">{t("livePage.live.camTitle")}</h3>
+                <p className="text-sm text-gray-secondary leading-relaxed">{t("livePage.live.camDesc")}</p>
               </div>
               <div className="rounded-xl p-5 border border-sky-200 bg-sky-50/80 border-l-4 border-l-sky-500 shadow-sm">
                 <div className="w-10 h-10 flex items-center justify-center mb-3 rounded-lg bg-sky-100">
                   <i className="ri-broadcast-line text-2xl text-sky-700" />
                 </div>
-                <h3 className="text-base font-bold text-dark mb-2">マルチメディア展開</h3>
-                <p className="text-sm text-gray-secondary leading-relaxed">
-                  YouTube Live / TV / niconico / KIPzなどマルチメディア展開
-                </p>
+                <h3 className="text-base font-bold text-dark mb-2">{t("livePage.live.multiTitle")}</h3>
+                <p className="text-sm text-gray-secondary leading-relaxed">{t("livePage.live.multiDesc")}</p>
               </div>
               <div className="rounded-xl p-5 border border-emerald-200 bg-emerald-50/80 border-l-4 border-l-emerald-500 shadow-sm">
                 <div className="w-10 h-10 flex items-center justify-center mb-3 rounded-lg bg-emerald-100">
                   <i className="ri-film-line text-2xl text-emerald-700" />
                 </div>
-                <h3 className="text-base font-bold text-dark mb-2">臨場感のある映像</h3>
-                <p className="text-sm text-gray-secondary leading-relaxed">
-                  カメラバイクやドローンなど臨場感ある映像演出
-                </p>
+                <h3 className="text-base font-bold text-dark mb-2">{t("livePage.live.presenceTitle")}</h3>
+                <p className="text-sm text-gray-secondary leading-relaxed">{t("livePage.live.presenceDesc")}</p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Video Production */}
         <section className="w-full bg-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              映像制作
+              {t("livePage.video.title")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { icon: "ri-movie-2-line", title: "パッケージ制作", desc: "撮影・編集・テロップ・BGM込みのパッケージ制作" },
-                { icon: "ri-clapperboard-line", title: "短尺動画対応", desc: "ハイライト編集／SNS用ショート動画にも対応" },
-                { icon: "ri-disc-line", title: "企業広告・記録映像", desc: "企業広告・記録映像・DVD/Blu-ray制作も一括対応" },
-                { icon: "ri-archive-line", title: "アーカイブ販売", desc: "アーカイブ映像販売にも対応（KIPz）" },
-              ].map((item, idx) => (
+              {videoCards.map((item, idx) => (
                 <div key={idx} className="bg-off-white rounded-xl p-6 border border-gray-200">
                   <div className="w-10 h-10 flex items-center justify-center mb-4">
                     <i className={`${item.icon} text-2xl text-accent`} />
                   </div>
-                  <h3 className="text-base font-bold text-dark mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-secondary">{item.desc}</p>
+                  <h3 className="text-base font-bold text-dark mb-2">{t(item.titleKey)}</h3>
+                  <p className="text-sm text-gray-secondary">{t(item.descKey)}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* One-Stop System */}
         <section className="w-full bg-off-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              ワンストップ体制
+              {t("livePage.onestop.title")}
             </h2>
             <div className="space-y-3">
-              {[
-                "現場ロケハンから配信オペレーションまで一貫管理",
-                "競技団体／放送局／スポンサーとの調整経験多数",
-                "台本構成・ナレーション原稿・進行表作成も対応",
-                "SNSでの告知、事前プロモーションプランの構築も可能",
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3 py-2.5 border-b border-gray-100">
+              {onestop.map((key) => (
+                <div key={key} className="flex items-start gap-3 py-2.5 border-b border-gray-100">
                   <i className="ri-check-double-line text-accent mt-1 shrink-0" />
-                  <p className="text-base text-gray-secondary">{item}</p>
+                  <p className="text-base text-gray-secondary">{t(`livePage.onestop.${key}`)}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Recommended For */}
         <section className="w-full bg-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              こんな方におすすめ！
+              {t("livePage.fit.title")}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {[
-                { icon: "ri-award-line", title: "主催者様", desc: "大会やイベントを「プロの品質」で配信したい主催者様" },
-                { icon: "ri-megaphone-line", title: "広報担当者様", desc: "スポーツ競技をSNSやYouTubeで広く発信したい広報担当者様" },
-                { icon: "ri-building-line", title: "企業様", desc: "スポンサー向け映像／ブランディング素材を制作したい企業様" },
-              ].map((item, idx) => (
+              {fitCards.map((item, idx) => (
                 <div key={idx} className="bg-off-white rounded-xl p-6 border border-gray-200 text-center">
                   <div className="w-12 h-12 flex items-center justify-center mx-auto mb-4 bg-dark rounded-lg">
                     <i className={`${item.icon} text-2xl text-accent`} />
                   </div>
-                  <h3 className="text-base font-bold text-dark mb-2">{item.title}</h3>
-                  <p className="text-sm text-gray-secondary">{item.desc}</p>
+                  <h3 className="text-base font-bold text-dark mb-2">{t(item.titleKey)}</h3>
+                  <p className="text-sm text-gray-secondary">{t(item.descKey)}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Contact */}
         <section className="w-full bg-off-white py-8 md:py-10 lg:py-12 px-4 md:px-6 lg:px-10">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-xl md:text-2xl font-bold text-dark mb-5 pb-3 border-b border-gray-200">
-              サイクルネットへのお問い合わせ
+              {t("livePage.contact.title")}
             </h2>
             <div className="bg-white rounded-xl p-5 md:p-8 border border-gray-200">
               <div className="flex items-center gap-3 mb-6">
@@ -169,7 +155,7 @@ export default function LivePage() {
                 </a>
               </div>
               <div className="border-t border-gray-100 pt-6">
-                <h3 className="text-lg font-bold text-dark mb-3">ガチンコ サイクルTV</h3>
+                <h3 className="text-lg font-bold text-dark mb-3">{t("livePage.contact.gctvTitle")}</h3>
                 <a
                   href="https://www.youtube.com/@GachinkoCycleTV"
                   target="_blank"
@@ -182,9 +168,8 @@ export default function LivePage() {
               </div>
             </div>
 
-            {/* Works */}
             <h2 className="text-xl md:text-2xl font-bold text-dark mt-10 mb-5 pb-3 border-b border-gray-200">
-              トライアンフグループ実績一覧
+              {t("livePage.portfolio.title")}
             </h2>
             <div className="space-y-5">
               <div>

@@ -36,9 +36,9 @@ export default function NumbersSection() {
     <section
       id="works"
       ref={sectionRef}
-      className="w-full bg-dark-card py-16 md:py-24 lg:py-32 px-4 md:px-6 lg:px-10"
+      className="w-full bg-dark-card py-10 md:py-12 lg:py-14 px-4 md:px-6 lg:px-10"
     >
-      <div className="text-center mb-16 md:mb-20">
+      <div className="text-center mb-8 md:mb-10">
         <span className="text-sm font-medium text-gray-light uppercase tracking-[0.2em] block mb-3">
           {t("works.label")}
         </span>
@@ -51,7 +51,7 @@ export default function NumbersSection() {
       </div>
 
       {/* Big Numbers */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 mb-16 md:mb-20">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 mb-8 md:mb-10">
         {stats.map((stat, idx) => (
           <div
             key={idx}
@@ -66,7 +66,7 @@ export default function NumbersSection() {
               transitionDuration: "700ms",
             }}
           >
-            <div className="text-4xl md:text-5xl lg:text-6xl font-display font-black text-accent mb-2">
+            <div className="text-3xl md:text-4xl lg:text-5xl font-display font-black text-accent mb-1.5">
               {stat.value}
             </div>
             <div className="text-sm text-gray-light uppercase tracking-wider">

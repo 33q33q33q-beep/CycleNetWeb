@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -29,6 +29,8 @@ export default function Navbar() {
     setMenuOpen(false);
   };
 
+  const navColor = scrolled || !isHome ? "#0A0A0A" : "#FFFFFF";
+
   const goHome = () => {
     if (isHome) {
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -46,6 +48,7 @@ export default function Navbar() {
     { label: t("nav.concept"), id: "concept" },
     { label: t("nav.media"), id: "media" },
     { label: t("nav.solutions"), id: "solutions-btob" },
+    { label: t("nav.live"), path: "/live" as const },
     { label: t("nav.platform"), id: "platform" },
     { label: t("nav.works"), id: "works" },
     { label: t("nav.team"), id: "team" },
@@ -65,27 +68,39 @@ export default function Navbar() {
         <button
           onClick={goHome}
           className="text-base md:text-lg font-display font-bold tracking-[0.2em] uppercase cursor-pointer"
-          style={{ color: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+          style={{ color: navColor }}
         >
           Cycle Net Inc.
         </button>
 
         <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => scrollTo(item.id)}
-              className="relative text-sm font-medium tracking-wide cursor-pointer group"
-              style={{ color: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full" />
-            </button>
-          ))}
+          {navItems.map((item) =>
+            "path" in item ? (
+              <Link
+                key={item.path}
+                to={item.path}
+                className="relative text-sm font-medium tracking-wide cursor-pointer group whitespace-nowrap"
+                style={{ color: navColor }}
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full" />
+              </Link>
+            ) : (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className="relative text-sm font-medium tracking-wide cursor-pointer group"
+                style={{ color: navColor }}
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-accent transition-all duration-300 group-hover:w-full" />
+              </button>
+            )
+          )}
           <button
             onClick={toggleLang}
             className="text-sm font-medium tracking-wide cursor-pointer"
-            style={{ color: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+            style={{ color: navColor }}
           >
             {i18n.language === "ja" ? "EN" : "JP"}
           </button>
@@ -94,26 +109,26 @@ export default function Navbar() {
         <button
           className="md:hidden cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
-          style={{ color: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+          style={{ color: navColor }}
         >
           <div className="w-6 h-5 flex flex-col justify-between">
             <span
               className={`block h-[2px] w-full transition-all duration-300 origin-center ${
                 menuOpen ? "rotate-45 translate-y-[9px]" : ""
               }`}
-              style={{ backgroundColor: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+              style={{ backgroundColor: navColor }}
             />
             <span
               className={`block h-[2px] w-full transition-all duration-300 ${
                 menuOpen ? "opacity-0" : ""
               }`}
-              style={{ backgroundColor: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+              style={{ backgroundColor: navColor }}
             />
             <span
               className={`block h-[2px] w-full transition-all duration-300 origin-center ${
                 menuOpen ? "-rotate-45 -translate-y-[9px]" : ""
               }`}
-              style={{ backgroundColor: scrolled || !isHome ? "#0A0A0A" : "#FFFFFF" }}
+              style={{ backgroundColor: navColor }}
             />
           </div>
         </button>
@@ -122,15 +137,26 @@ export default function Navbar() {
       {menuOpen && (
         <div className="md:hidden bg-white/95 backdrop-blur-md border-t border-gray-200">
           <div className="flex flex-col px-6 py-6 gap-4">
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollTo(item.id)}
-                className="text-left text-lg font-medium text-dark cursor-pointer"
-              >
-                {item.label}
-              </button>
-            ))}
+            {navItems.map((item) =>
+              "path" in item ? (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className="text-left text-lg font-medium text-dark cursor-pointer"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              ) : (
+                <button
+                  key={item.id}
+                  onClick={() => scrollTo(item.id)}
+                  className="text-left text-lg font-medium text-dark cursor-pointer"
+                >
+                  {item.label}
+                </button>
+              )
+            )}
             <button
               onClick={toggleLang}
               className="text-left text-lg font-medium text-dark cursor-pointer"

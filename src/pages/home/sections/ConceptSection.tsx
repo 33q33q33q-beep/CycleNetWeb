@@ -20,28 +20,47 @@ export default function ConceptSection() {
     return () => observer.disconnect();
   }, []);
 
-  const pillars = [
+  const pillars: {
+    label: string;
+    title: string;
+    desc: string;
+    accent: "sky" | "amber" | "emerald" | "violet";
+  }[] = [
     {
       label: t("concept.watch.label"),
       title: t("concept.watch.title"),
       desc: t("concept.watch.desc"),
+      accent: "sky",
     },
     {
       label: t("concept.ride.label"),
       title: t("concept.ride.title"),
       desc: t("concept.ride.desc"),
+      accent: "amber",
     },
     {
       label: t("concept.support.label"),
       title: t("concept.support.title"),
       desc: t("concept.support.desc"),
+      accent: "emerald",
     },
     {
       label: t("concept.connect.label"),
       title: t("concept.connect.title"),
       desc: t("concept.connect.desc"),
+      accent: "violet",
     },
   ];
+
+  const pillarTone: Record<
+    (typeof pillars)[number]["accent"],
+    string
+  > = {
+    sky: "border-l-[4px] border-l-sky-500 bg-sky-50/85",
+    amber: "border-l-[4px] border-l-amber-500 bg-amber-50/85",
+    emerald: "border-l-[4px] border-l-emerald-500 bg-emerald-50/85",
+    violet: "border-l-[4px] border-l-violet-500 bg-violet-50/85",
+  };
 
   return (
     <section
@@ -61,30 +80,30 @@ export default function ConceptSection() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
         {pillars.map((pillar, idx) => (
           <div
             key={idx}
-            className={`group relative bg-white border border-gray-200 rounded-xl p-8 md:p-10 hover:border-accent transition-all duration-500 cursor-pointer ${
+            className={`group relative rounded-xl border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-500 cursor-pointer pl-5 pr-5 py-6 md:pl-6 md:pr-6 md:py-7 ${pillarTone[pillar.accent]} ${
               visible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
             style={{
               transitionDelay: visible ? `${idx * 120}ms` : "0ms",
-              transitionProperty: "opacity, transform, border-color",
+              transitionProperty: "opacity, transform, box-shadow",
               transitionDuration: "700ms, 700ms, 500ms",
             }}
           >
-            <div className="flex items-start gap-6">
-              <span className="text-5xl md:text-6xl font-display font-black text-accent/20 group-hover:text-accent/40 transition-colors duration-500">
+            <div className="flex items-start gap-4 md:gap-5">
+              <span className="text-4xl md:text-5xl font-display font-black text-accent/35 group-hover:text-accent/55 transition-colors duration-500 shrink-0 w-[2.5rem] md:w-[3rem]">
                 {pillar.label}
               </span>
-              <div>
-                <h3 className="text-xl md:text-2xl font-bold text-dark mb-3">
+              <div className="min-w-0">
+                <h3 className="text-lg md:text-xl font-bold text-dark mb-2 leading-snug">
                   {pillar.title}
                 </h3>
-                <p className="text-base text-gray-secondary leading-relaxed">
+                <p className="text-sm md:text-base text-gray-secondary leading-relaxed">
                   {pillar.desc}
                 </p>
               </div>

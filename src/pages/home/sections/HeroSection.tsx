@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 export default function HeroSection() {
   const { t } = useTranslation();
@@ -41,6 +42,19 @@ export default function HeroSection() {
       <div className="relative z-10 w-full h-full flex flex-col justify-between px-4 md:px-6 lg:px-10 py-6 md:py-10 lg:py-12">
         <div className="flex-1 flex flex-col justify-start pt-16 md:pt-24">
           <div ref={titleRef} className="max-w-5xl">
+            <div className="mb-6">
+              <img
+                src="/cn-logo.png"
+                alt=""
+                className="h-10 sm:h-11 md:h-12 w-auto max-w-[220px] object-contain drop-shadow-md"
+                onError={(e) => {
+                  const img = e.currentTarget;
+                  if (!img.src.endsWith("cycle-net-logo.svg")) {
+                    img.src = "/cycle-net-logo.svg";
+                  }
+                }}
+              />
+            </div>
             <div className="flex items-center gap-3 mb-6">
               <span className="text-white/60 text-sm md:text-base font-medium uppercase tracking-[0.3em]">
                 JBCF OFFICIAL INFORMATION SOURCE / SINCE 2022 / TOKYO
@@ -75,6 +89,14 @@ export default function HeroSection() {
                 <i className="ri-arrow-right-line" />
               </a>
             </div>
+            <Link
+              to="/live"
+              className="group mt-6 inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border-2 border-accent bg-accent/15 px-5 py-3 text-sm md:text-base font-bold text-accent backdrop-blur-sm transition-all duration-300 hover:bg-accent hover:text-dark hover:border-accent"
+            >
+              <i className="ri-live-line text-lg md:text-xl" />
+              <span>{t("hero.banner.live")}</span>
+              <i className="ri-arrow-right-line text-lg opacity-80 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
           </div>
         </div>
 

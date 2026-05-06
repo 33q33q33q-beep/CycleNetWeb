@@ -111,60 +111,45 @@ export default function BtoBSection() {
     "mailto:info@cycle-net.jp?subject=" +
     encodeURIComponent("GCTV 特派員応募");
 
-  const btocServices: Array<
-    | {
-        kind: "single";
-        title: string;
-        desc: string;
-        icon: string;
-        link: string;
-        linkText: string;
-        external?: boolean;
-      }
-    | {
-        kind: "correspondent";
-        title: string;
-        desc: string;
-        icon: string;
-        channelUrl: string;
-        channelText: string;
-        mailHref: string;
-        applyText: string;
-      }
-  > = [
+  const btocFanTone: Record<
+    "sky" | "amber" | "emerald" | "violet",
+    string
+  > = {
+    sky: "border-l-[4px] border-l-sky-500 bg-sky-50/85",
+    amber: "border-l-[4px] border-l-amber-500 bg-amber-50/85",
+    emerald: "border-l-[4px] border-l-emerald-500 bg-emerald-50/85",
+    violet: "border-l-[4px] border-l-violet-500 bg-violet-50/85",
+  };
+
+  const btocFanPillars: {
+    label: string;
+    title: string;
+    desc: string;
+    tone: keyof typeof btocFanTone;
+  }[] = [
     {
-      kind: "single",
-      title: t("btoc.gctv.title"),
-      desc: t("btoc.gctv.desc"),
-      icon: "ri-youtube-line",
-      link: "/gctv",
-      linkText: t("btoc.gctv.link"),
+      label: t("btoc.fan01.label"),
+      title: t("btoc.fan01.title"),
+      desc: t("btoc.fan01.desc"),
+      tone: "sky",
     },
     {
-      kind: "correspondent",
-      title: t("btoc.correspondent.title"),
-      desc: t("btoc.correspondent.desc"),
-      icon: "ri-user-voice-line",
-      channelUrl: "https://www.youtube.com/@GachinkoCycleTV-TOKUHAIN",
-      channelText: t("btoc.correspondent.channelLink"),
-      mailHref: correspondentMail,
-      applyText: t("btoc.correspondent.applyLink"),
+      label: t("btoc.fan02.label"),
+      title: t("btoc.fan02.title"),
+      desc: t("btoc.fan02.desc"),
+      tone: "amber",
     },
     {
-      kind: "single",
-      title: t("btoc.events.title"),
-      desc: t("btoc.events.desc"),
-      icon: "ri-trophy-line",
-      link: "/coming-soon",
-      linkText: t("btoc.events.link"),
+      label: t("btoc.fan03.label"),
+      title: t("btoc.fan03.title"),
+      desc: t("btoc.fan03.desc"),
+      tone: "emerald",
     },
     {
-      kind: "single",
-      title: t("btoc.community.title"),
-      desc: t("btoc.community.desc"),
-      icon: "ri-group-line",
-      link: "/coming-soon",
-      linkText: t("btoc.community.link"),
+      label: t("btoc.fan04.label"),
+      title: t("btoc.fan04.title"),
+      desc: t("btoc.fan04.desc"),
+      tone: "violet",
     },
   ];
 
@@ -219,6 +204,9 @@ export default function BtoBSection() {
         </div>
 
         {/* Target Audiences */}
+        <h3 className="text-center text-lg md:text-xl font-display font-bold text-dark mb-6 md:mb-8 tracking-tight">
+          {t("btob.targetsHeading")}
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
           {targets.map((target, idx) => {
             const tone = targetTone[target.tone];
@@ -244,7 +232,7 @@ export default function BtoBSection() {
                 <h4 className="text-base md:text-lg font-bold text-dark mb-2 whitespace-pre-line leading-snug">
                   {target.title}
                 </h4>
-                <p className="text-sm text-gray-secondary leading-relaxed">
+                <p className="text-sm text-gray-secondary leading-relaxed whitespace-pre-line">
                   {target.desc}
                 </p>
               </div>
@@ -255,83 +243,94 @@ export default function BtoBSection() {
 
       {/* BtoC Section */}
       <div id="solutions-btoc" ref={btocRef}>
-        <div className="text-center mb-16 md:mb-20">
+        <div className="text-center mb-12 md:mb-16">
           <span className="text-sm font-medium text-gray-muted uppercase tracking-[0.2em] block mb-3">
             {t("btoc.label")}
           </span>
           <h3 className="text-sm font-medium text-accent uppercase tracking-[0.3em] mb-6">
             {t("btoc.subtitle")}
           </h3>
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dark leading-tight mb-6 max-w-3xl mx-auto">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-display font-bold text-dark leading-tight mb-5 max-w-3xl mx-auto">
             {t("btoc.title")}
           </h2>
-          <p className="text-base md:text-lg text-gray-secondary leading-relaxed max-w-2xl mx-auto">
-            {t("btoc.desc")}
+          <p className="text-lg md:text-xl font-semibold text-dark mb-4 max-w-3xl mx-auto leading-snug">
+            {t("btoc.leadShort")}
+          </p>
+          <p className="text-base md:text-lg text-gray-secondary leading-relaxed max-w-3xl mx-auto whitespace-pre-line">
+            {t("btoc.leadLong")}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {btocServices.map((service, idx) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+          {btocFanPillars.map((pillar, idx) => (
             <div
               key={idx}
-              className={`group bg-off-white border border-gray-200 rounded-xl p-8 hover:border-accent transition-all duration-500 ${
+              className={`group rounded-xl border border-gray-200/90 shadow-sm hover:shadow-md transition-all duration-500 pl-5 pr-5 py-6 md:pl-6 md:pr-6 md:py-7 ${btocFanTone[pillar.tone]} ${
                 btocVisible
                   ? "opacity-100 translate-y-0"
                   : "opacity-0 translate-y-8"
               }`}
               style={{
                 transitionDelay: btocVisible ? `${idx * 120}ms` : "0ms",
-                transitionProperty: "opacity, transform, border-color",
+                transitionProperty: "opacity, transform, box-shadow",
                 transitionDuration: "700ms, 700ms, 500ms",
               }}
             >
-              <div className="w-14 h-14 flex items-center justify-center mb-6 bg-dark rounded-xl">
-                <i className={`${service.icon} text-2xl text-accent`} />
-              </div>
-              <h4 className="text-lg md:text-xl font-bold text-dark mb-3">
-                {service.title}
-              </h4>
-              <p className="text-base text-gray-secondary leading-relaxed mb-6">
-                {service.desc}
-              </p>
-              {service.kind === "correspondent" ? (
-                <div className="flex flex-col gap-3">
-                  <a
-                    href={service.channelUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-base font-bold text-accent hover:text-dark transition-colors duration-300 cursor-pointer whitespace-nowrap"
-                  >
-                    {service.channelText}
-                    <i className="ri-arrow-right-line" />
-                  </a>
-                  <a
-                    href={service.mailHref}
-                    className="inline-flex items-center gap-2 text-base font-bold text-accent hover:text-dark transition-colors duration-300 cursor-pointer whitespace-nowrap"
-                  >
-                    {service.applyText}
-                    <i className="ri-arrow-right-line" />
-                  </a>
+              <div className="flex items-start gap-4">
+                <span className="text-4xl md:text-5xl font-display font-black text-accent/35 shrink-0 w-[2.5rem] md:w-[3rem]">
+                  {pillar.label}
+                </span>
+                <div className="min-w-0">
+                  <h4 className="text-lg md:text-xl font-bold text-dark mb-2 leading-snug">
+                    {pillar.title}
+                  </h4>
+                  <p className="text-sm md:text-base text-gray-secondary leading-relaxed">
+                    {pillar.desc}
+                  </p>
                 </div>
-              ) : service.link.startsWith("/") && !service.external ? (
-                <Link
-                  to={service.link}
-                  className="inline-flex items-center gap-2 text-base font-bold text-accent hover:text-dark transition-colors duration-300 cursor-pointer whitespace-nowrap"
-                >
-                  {service.linkText}
-                  <i className="ri-arrow-right-line" />
-                </Link>
-              ) : (
-                <a
-                  href={service.link}
-                  className="inline-flex items-center gap-2 text-base font-bold text-accent hover:text-dark transition-colors duration-300 cursor-pointer whitespace-nowrap"
-                >
-                  {service.linkText}
-                  <i className="ri-arrow-right-line" />
-                </a>
-              )}
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 md:gap-5">
+          <Link
+            to="/gctv"
+            className="inline-flex items-center gap-2 rounded-lg border border-accent/40 bg-accent/10 px-5 py-2.5 text-sm font-bold text-dark hover:bg-accent hover:border-accent transition-colors"
+          >
+            <i className="ri-youtube-line text-lg" />
+            {t("btoc.gctv.link")}
+          </Link>
+          <a
+            href="https://www.youtube.com/@GachinkoCycleTV-TOKUHAIN"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
+          >
+            <i className="ri-megaphone-line text-lg text-accent" />
+            {t("btoc.correspondent.channelLink")}
+          </a>
+          <a
+            href={correspondentMail}
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
+          >
+            <i className="ri-mail-send-line text-lg text-accent" />
+            {t("btoc.correspondent.applyLink")}
+          </a>
+          <Link
+            to="/coming-soon"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
+          >
+            <i className="ri-calendar-event-line text-lg text-accent" />
+            {t("btoc.events.link")}
+          </Link>
+          <Link
+            to="/coming-soon"
+            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
+          >
+            <i className="ri-group-line text-lg text-accent" />
+            {t("btoc.community.link")}
+          </Link>
         </div>
       </div>
     </section>
