@@ -157,13 +157,13 @@ export default function LivePage() {
               <div className="border-t border-gray-100 pt-6">
                 <h3 className="text-lg font-bold text-dark mb-3">{t("livePage.contact.gctvTitle")}</h3>
                 <a
-                  href="https://www.youtube.com/@GachinkoCycleTV"
+                  href="https://www.youtube.com/@GachinkoCycleTV/streams"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 text-accent font-medium hover:text-dark transition-colors duration-300"
                 >
                   <i className="ri-youtube-line" />
-                  https://www.youtube.com/@GachinkoCycleTV
+                  https://www.youtube.com/@GachinkoCycleTV/streams
                 </a>
               </div>
             </div>
