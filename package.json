@@ -1,0 +1,9 @@
+{
+  "name": "cyclenet-static-site",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "build": "node -e \"const fs=require('fs');const path=require('path');const dist=path.join(process.cwd(),'dist');fs.mkdirSync(dist,{recursive:true});['index.html','styles.css','script.js'].forEach(f=>fs.copyFileSync(path.join(process.cwd(),f),path.join(dist,f)));\""
+  }
+}
+
