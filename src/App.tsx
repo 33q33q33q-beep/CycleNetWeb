@@ -8,7 +8,7 @@ import ScrollToTop from "./components/feature/ScrollToTop";
 function App() {
   return (
     <I18nextProvider i18n={i18n}>
-      <BrowserRouter basename={__BASE_PATH__}>
+      <BrowserRouter basename={__ROUTER_BASENAME__}>
         <ScrollToTop />
         <AppRoutes />
       </BrowserRouter>

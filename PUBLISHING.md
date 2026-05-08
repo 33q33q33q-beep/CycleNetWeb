@@ -11,6 +11,43 @@
   - `out/*.png` / `out/*.svg`（ロゴ・画像）
   - `out/_redirects`（ルーティング用）
 
+## サブディレクトリ配信で「真っ白」になる件（重要）
+
+ドメイン直下ではなく **`https://example.com/test202605-2/` のようにサブフォルダ配信**する場合、通常のビルドでは
+`index.html` 内のスクリプト/スタイルが **`/assets/...`（サイトルート）** を向きます。
+その結果 **JS/CSS が 404** になり、画面上は **何も表示されない（白画面）** になります。
+
+### 対処（ビルドし直して再アップロード）
+
+サブフォルダのパス（末尾スラッシュ有無どちらでも可）を `BASE_PATH` に渡してビルドしてください。
+
+```bash
+BASE_PATH=/test202605-2 npm run build
+```
+
+その後、`out/` の中身をサーバーの該当ディレクトリへ上げ直してください。  
+※このリポジトリは `vite.config.ts` と `BrowserRouter basename` が `BASE_PATH` に追従するよう調整されています。
+
+### Apache などで `/test202605-2/gctv` が 404 になる場合
+
+SPA のため、`/test202605-2/gctv` に **直接アクセス**すると静的サーバーがファイルを見つけられず **404** になることがあります。
+そのときは、そのディレクトリに **`index.html` へフォールバックする設定**が必要です（サーバーの種類で書き方が異なります）。
+
+例: サブディレクトリ直下に `.htaccess` を置く（mod_rewrite が有効な場合）
+
+```
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /test202605-2/
+RewriteRule ^index\.html$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . index.html [L]
+</IfModule>
+```
+
+`_redirects` は主に Netlify / 一部CDN向けであり、一般的な共用サーバーでは読まれないことが多いです。
+
 ## 公開方法（例）
 
 ### 1) 静的ホスティング（S3/Cloudflare Pages/さくら等）
