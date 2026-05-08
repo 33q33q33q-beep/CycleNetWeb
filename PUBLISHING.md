@@ -3,6 +3,8 @@
 このリポジトリは Vite + React のWebサイトです。
 `npm run build` で生成される **`out/` フォルダ一式**が、インターネット公開用（静的ホスティング用）の成果物です。
 
+リポジトリに同梱されている `cyclenetweb-publish.zip` は、**`BASE_PATH=/test202605-2` でビルドした `out/`** を固めたものです（`https://www.cycle-net.jp/test202605-2/` 向け）。別パスに置く場合は自分で `BASE_PATH=...` を付けてビルドし直してください。
+
 ## このZIPに含まれているもの
 
 - `out/`（公開用ビルド成果物）
