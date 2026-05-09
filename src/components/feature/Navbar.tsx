@@ -50,8 +50,8 @@ export default function Navbar() {
     { label: t("nav.solutions"), id: "solutions-btob" },
     { label: t("nav.live"), path: "/live" as const },
     { label: t("nav.platform"), id: "platform" },
-    { label: t("nav.works"), id: "works" },
     { label: t("nav.team"), id: "team" },
+    { label: t("nav.works"), id: "works" },
     { label: t("nav.faq"), id: "faq" },
     { label: t("nav.contact"), id: "contact" },
   ];

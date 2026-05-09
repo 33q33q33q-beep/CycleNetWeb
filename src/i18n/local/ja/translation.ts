@@ -168,6 +168,8 @@ export default {
   "jbcfRoadSeries.alt": "JBCFロードレースシリーズのレース体系と全国の開催地マップ",
   "jbcfRoadSeries.scheduleHeading": "2026 配信・大会予定",
   "jbcfRoadSeries.linkLater": "配信URLは随時更新",
+  "jbcfRoadSeries.detailsHint": "クリックで開く",
+  "jbcfRoadSeries.tojTitle": "Tour of Japan 2026",
 
   "works.label": "WORKS",
   "works.subtitle": "EVIDENCE IN NUMBERS",

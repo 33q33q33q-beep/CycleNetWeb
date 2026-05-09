@@ -4,6 +4,7 @@ import {
   jbcfRoadSeriesSchedule2026,
   type JbcfScheduleItem,
 } from "@/data/jbcfRoadSeriesSchedule2026";
+import { tourOfJapan2026Stages } from "@/data/tourOfJapan2026";
 
 function scheduleAccent(item: JbcfScheduleItem): string {
   const s = item.series.toUpperCase();
@@ -27,7 +28,7 @@ function tagClass(item: JbcfScheduleItem): string {
 }
 
 export default function JbcfRoadSeriesSection() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -71,56 +72,100 @@ export default function JbcfRoadSeriesSection() {
           </p>
         </div>
 
-        <div>
-          <h3 className="text-sm font-bold text-white/90 uppercase tracking-wider mb-4">
-            {t("jbcfRoadSeries.scheduleHeading")}
-          </h3>
-          <ul className="space-y-2.5">
-            {jbcfRoadSeriesSchedule2026.map((item, idx) => (
-              <li
-                key={`${item.series}-${item.date}-${idx}`}
-                className={`rounded-lg pl-3 pr-3 py-3 md:py-3.5 flex flex-col gap-2 md:flex-row md:items-center md:gap-4 ${scheduleAccent(
-                  item
-                )}`}
-              >
-                <div className="flex flex-wrap items-center gap-2 md:w-[min(100%,280px)] shrink-0">
-                  <span
-                    className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md ${tagClass(
-                      item
-                    )}`}
+        <details className="rounded-xl border border-white/15 bg-white/[0.04] overflow-hidden">
+          <summary className="cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden flex flex-wrap items-center justify-between gap-3 px-4 py-4 text-left font-bold text-white hover:bg-white/[0.06] transition-colors">
+            <span>{t("jbcfRoadSeries.scheduleHeading")}</span>
+            <span className="text-xs font-medium text-accent/90 whitespace-nowrap">
+              {t("jbcfRoadSeries.detailsHint")}
+            </span>
+          </summary>
+          <div className="border-t border-white/10 px-3 pb-4 pt-1">
+            <ul className="space-y-2.5 mt-3">
+              {jbcfRoadSeriesSchedule2026.map((item, idx) => (
+                <li
+                  key={`${item.series}-${item.date}-${idx}`}
+                  className={`rounded-lg pl-3 pr-3 py-3 md:py-3.5 flex flex-col gap-2 md:flex-row md:items-center md:gap-4 ${scheduleAccent(
+                    item
+                  )}`}
+                >
+                  <div className="flex flex-wrap items-center gap-2 md:w-[min(100%,280px)] shrink-0">
+                    <span
+                      className={`inline-block text-xs font-bold px-2.5 py-1 rounded-md ${tagClass(
+                        item
+                      )}`}
+                    >
+                      {item.series}
+                    </span>
+                    <span className="text-sm text-gray-300">{item.date}</span>
+                  </div>
+                  <p className="text-sm md:text-base text-white/95 flex-1 leading-snug">
+                    {item.title}
+                  </p>
+                  <div className="shrink-0 md:text-right">
+                    {item.url ? (
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:text-white transition-colors"
+                      >
+                        <i className="ri-youtube-fill text-lg" />
+                        YouTube LIVE
+                      </a>
+                    ) : item.pending ? (
+                      <span className="text-xs font-medium text-amber-400/95">
+                        ※調整中
+                      </span>
+                    ) : (
+                      <span className="text-xs text-gray-500">
+                        {t("jbcfRoadSeries.linkLater")}
+                      </span>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </details>
+
+        <details className="mt-4 rounded-xl border border-white/15 bg-white/[0.04] overflow-hidden">
+          <summary className="cursor-pointer select-none list-none [&::-webkit-details-marker]:hidden flex flex-wrap items-center justify-between gap-3 px-4 py-4 text-left font-bold text-white hover:bg-white/[0.06] transition-colors">
+            <span>{t("jbcfRoadSeries.tojTitle")}</span>
+            <span className="text-xs font-medium text-accent/90 whitespace-nowrap">
+              {t("jbcfRoadSeries.detailsHint")}
+            </span>
+          </summary>
+          <div className="border-t border-white/10 px-3 pb-4 pt-1">
+            <ul className="space-y-2.5 mt-3">
+              {tourOfJapan2026Stages.map((st) => {
+                const ja = i18n.language.startsWith("ja");
+                const title = ja ? st.titleJa : st.titleEn;
+                return (
+                  <li
+                    key={st.stage}
+                    className="rounded-lg pl-3 pr-3 py-3 md:py-3.5 flex flex-col gap-2 md:flex-row md:items-center md:gap-4 border-l-[3px] border-l-violet-500 bg-violet-500/10"
                   >
-                    {item.series}
-                  </span>
-                  <span className="text-sm text-gray-300">{item.date}</span>
-                </div>
-                <p className="text-sm md:text-base text-white/95 flex-1 leading-snug">
-                  {item.title}
-                </p>
-                <div className="shrink-0 md:text-right">
-                  {item.url ? (
+                    <span className="text-xs md:text-sm font-black text-accent shrink-0 w-[4.75rem]">
+                      {st.stage}
+                    </span>
+                    <p className="text-sm md:text-base text-white/95 flex-1 leading-snug">
+                      {title}
+                    </p>
                     <a
-                      href={item.url}
+                      href={st.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 text-sm font-bold text-accent hover:text-white transition-colors"
+                      className="inline-flex shrink-0 items-center gap-1.5 text-sm font-bold text-accent hover:text-white transition-colors md:text-right"
                     >
                       <i className="ri-youtube-fill text-lg" />
                       YouTube LIVE
                     </a>
-                  ) : item.pending ? (
-                    <span className="text-xs font-medium text-amber-400/95">
-                      ※調整中
-                    </span>
-                  ) : (
-                    <span className="text-xs text-gray-500">
-                      {t("jbcfRoadSeries.linkLater")}
-                    </span>
-                  )}
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        </details>
       </div>
     </section>
   );

@@ -25,15 +25,10 @@ export default {
   "aboutPage.company.ceo": "Osamu Tanaka",
 
   "aboutPage.cv.title": "Executive profile",
-  "aboutPage.cv.y1987": `Joined Kyoritsu Co., Ltd.\nWorked on events as Tokyo Dome lead\nSimon & Garfunkel Japan tour\nJRA Final Dream production\nNBA/MLB Japan games at Tokyo Dome, and more\nTechnical roles on nationwide artist concerts`,
+  "aboutPage.cv.y1987": `Joined Kyoritsu Co., Ltd.\n\nTokyo Dome lead for events:\nSimon & Garfunkel Japan tour\nJRA Final Dream production\nNBA/MLB Japan games at Tokyo Dome, and more\nTechnical roles on nationwide artist concerts`,
   "aboutPage.cv.y2005": "Left the company",
   "aboutPage.cv.y2006":
     "Project consultant for Tokyo Dome’s new hall facility initiative.",
-  "aboutPage.cv.y2011":
-    "Producer, event division, Triumph Inc. (Cycle Net group)\nTeresa Teng 60th anniversary production\nNiconico Chokaigi and corporate events, among others",
-  "aboutPage.cv.y2019":
-    "Tokyo 2020 Olympic & Paralympic Games\nVenue management at the aquatics venue",
-  "aboutPage.cv.y2024": "Appointed representative director, Cycle Net Inc.",
 
   "aboutPage.contact.title": "Contact",
   "aboutPage.contact.lead": "Reach us by email",
