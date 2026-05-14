@@ -13,3 +13,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Local FTP publish bundles (Artifacts live in `_CURSOR WEB` Drive folder)
+publishing-package-test202605-2/
+cycle-net_UPLOAD_all_test202605-2.zip
+cycle-net_cycle-net.jp_test202605-2_*.zip

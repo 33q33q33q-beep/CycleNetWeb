@@ -8,6 +8,14 @@ export default function GCTVPage() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
+  const contentLinks = {
+    live: "https://www.youtube.com/@GachinkoCycleTV/streams",
+    highlight:
+      "https://youtube.com/playlist?list=PLvEOnP8mxvn6ohQmeyFZNH_V6kEYOQZxF&si=aoyqnJP0lNBhszK7",
+    documentary:
+      "https://youtube.com/playlist?list=PLvEOnP8mxvn7C7i6kJ6qzglo6Ku5M7gir&si=jTyam4GbsCH_rX_y",
+  } as const;
+
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -63,7 +71,7 @@ export default function GCTVPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-5xl mx-auto text-center">
             <div>
               <div className="text-4xl md:text-5xl font-display font-black text-accent mb-2">
-                30,100
+                30,500
               </div>
               <div className="text-sm text-gray-light">{t("gctv.stat.subscribers")}</div>
             </div>
@@ -104,20 +112,26 @@ export default function GCTVPage() {
                 icon: "ri-live-line",
                 title: t("gctv.content.live.title"),
                 desc: t("gctv.content.live.desc"),
+                href: contentLinks.live,
               },
               {
                 icon: "ri-movie-line",
                 title: t("gctv.content.highlight.title"),
                 desc: t("gctv.content.highlight.desc"),
+                href: contentLinks.highlight,
               },
               {
                 icon: "ri-article-line",
                 title: t("gctv.content.doc.title"),
                 desc: t("gctv.content.doc.desc"),
+                href: contentLinks.documentary,
               },
             ].map((item, idx) => (
-              <div
+              <a
                 key={idx}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`bg-off-white border border-gray-200 rounded-xl p-8 text-center hover:border-accent transition-all duration-500 ${
                   visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
                 }`}
@@ -136,7 +150,7 @@ export default function GCTVPage() {
                 <p className="text-base text-gray-secondary leading-relaxed">
                   {item.desc}
                 </p>
-              </div>
+              </a>
             ))}
           </div>
         </section>

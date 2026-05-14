@@ -111,6 +111,8 @@ export default function BtoBSection() {
     "mailto:info@cycle-net.jp?subject=" +
     encodeURIComponent("GCTV 特派員応募");
 
+  const communityMail = "mailto:info@cycle-net.jp";
+
   const btocFanTone: Record<
     "sky" | "amber" | "emerald" | "violet",
     string
@@ -302,28 +304,19 @@ export default function BtoBSection() {
             {t("btoc.gctv.link")}
           </Link>
           <a
-            href="https://www.youtube.com/@GachinkoCycleTV-TOKUHAIN"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
-          >
-            <i className="ri-megaphone-line text-lg text-accent" />
-            {t("btoc.correspondent.channelLink")}
-          </a>
-          <a
             href={correspondentMail}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
           >
             <i className="ri-mail-send-line text-lg text-accent" />
             {t("btoc.correspondent.applyLink")}
           </a>
-          <Link
-            to="/coming-soon"
+          <a
+            href={communityMail}
             className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"
           >
             <i className="ri-calendar-event-line text-lg text-accent" />
             {t("btoc.events.link")}
-          </Link>
+          </a>
           <Link
             to="/coming-soon"
             className="inline-flex items-center gap-2 rounded-lg border border-gray-200 px-5 py-2.5 text-sm font-bold text-dark hover:border-accent transition-colors"

@@ -35,9 +35,9 @@ export default function Home() {
         <MediaSection />
         <MascotSection />
         <BtoBSection />
-        <NumbersSection />
-        <TeamSection />
         <PlatformSection />
+        <TeamSection />
+        <NumbersSection />
         <JbcfRoadSeriesSection />
         <FAQSection />
         <ContactSection />

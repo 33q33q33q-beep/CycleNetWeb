@@ -102,24 +102,6 @@ export default function AboutPage() {
                   <CvLines translationKey="aboutPage.cv.y2006" />
                 </div>
               </div>
-              <div className="flex gap-4">
-                <span className="text-accent font-bold text-sm w-16 shrink-0 pt-1">2011</span>
-                <div className="text-base text-gray-secondary leading-relaxed">
-                  <CvLines translationKey="aboutPage.cv.y2011" />
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-accent font-bold text-sm w-16 shrink-0 pt-1">2019</span>
-                <div className="text-base text-gray-secondary leading-relaxed">
-                  <CvLines translationKey="aboutPage.cv.y2019" />
-                </div>
-              </div>
-              <div className="flex gap-4">
-                <span className="text-accent font-bold text-sm w-16 shrink-0 pt-1">2024</span>
-                <div className="text-base text-gray-secondary leading-relaxed">
-                  <p className="text-dark font-medium">{t("aboutPage.cv.y2024")}</p>
-                </div>
-              </div>
             </div>
 
             <div className="mt-16 pt-8 border-t border-gray-200">

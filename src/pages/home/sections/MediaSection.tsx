@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 /** 同一プロンプトの携帯向け低解像度版（帯域・デコード負荷軽減） */
 const MEDIA_BROADCAST_QUERY =
@@ -74,16 +75,14 @@ export default function MediaSection() {
             </div>
           </div>
 
-          <a
-            href="https://www.youtube.com/@GachinkoCycleTV"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/gctv"
             className="inline-flex items-center gap-2 bg-dark text-white text-base font-bold px-8 py-4 rounded-lg hover:bg-gray-primary transition-colors duration-300 cursor-pointer whitespace-nowrap"
           >
             <i className="ri-youtube-line text-lg" />
             {t("media.cta")}
             <i className="ri-arrow-right-line" />
-          </a>
+          </Link>
         </div>
 
         <div

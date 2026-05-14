@@ -31,7 +31,7 @@ export default function Footer() {
             <p className="text-gray-muted text-sm mb-8">
               {t("footer.company.name")}
             </p>
-            <div className="flex items-center gap-4">
+            <div className="flex flex-wrap items-center gap-4">
               <a
                 href="https://www.youtube.com/@GachinkoCycleTV"
                 target="_blank"
@@ -41,7 +41,7 @@ export default function Footer() {
                 <i className="ri-youtube-line text-lg" />
               </a>
               <a
-                href="#"
+                href="https://x.com/GachinkoCycleTV"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-secondary hover:border-accent hover:text-accent transition-colors duration-300"
@@ -49,7 +49,7 @@ export default function Footer() {
                 <i className="ri-twitter-x-line text-lg" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/gachinkocycletv/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-secondary hover:border-accent hover:text-accent transition-colors duration-300"
@@ -57,12 +57,20 @@ export default function Footer() {
                 <i className="ri-instagram-line text-lg" />
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/GACHINKOCYCLETV"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-secondary hover:border-accent hover:text-accent transition-colors duration-300"
               >
                 <i className="ri-facebook-fill text-lg" />
+              </a>
+              <a
+                href="https://www.tiktok.com/@gachinkocycletv_gctv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-secondary hover:border-accent hover:text-accent transition-colors duration-300"
+              >
+                <i className="ri-tiktok-fill text-lg" />
               </a>
             </div>
           </div>
@@ -169,22 +177,36 @@ export default function Footer() {
                 YouTube
               </a>
               <a
-                href="#"
+                href="https://x.com/GachinkoCycleTV"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-base text-gray-light hover:text-accent transition-colors duration-300"
               >
                 X (Twitter)
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/gachinkocycletv/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-base text-gray-light hover:text-accent transition-colors duration-300"
               >
                 Instagram
               </a>
               <a
-                href="#"
+                href="https://www.facebook.com/GACHINKOCYCLETV"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-base text-gray-light hover:text-accent transition-colors duration-300"
               >
                 Facebook
+              </a>
+              <a
+                href="https://www.tiktok.com/@gachinkocycletv_gctv"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-base text-gray-light hover:text-accent transition-colors duration-300"
+              >
+                TikTok
               </a>
             </div>
           </div>
